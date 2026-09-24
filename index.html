@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f1e8">
+  <meta name="description" content="A lightweight Level 5 Payroll and Accounting revision quiz.">
+  <title>Payroll &amp; Accounting Exam Simulator</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231f3a37'/%3E%3Cpath d='M17 18h30v8H26v8h16v8H26v12h-9V18Z' fill='%23f2b84b'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Payroll and Accounting Exam Simulator home">
+        <span class="brand-mark" aria-hidden="true">PA</span>
+        <span>
+          <span class="eyebrow">Level 5 revision</span>
+          <span class="brand-title">Payroll &amp; Accounting</span>
+        </span>
+      </a>
+      <button class="text-button" id="headerRestartButton" type="button" hidden>Restart</button>
+    </header>
+
+    <main>
+      <section class="view welcome-view" id="welcomeView" aria-labelledby="welcomeTitle">
+        <div class="welcome-copy">
+          <p class="section-label">Practice session</p>
+          <h1 id="welcomeTitle">Payroll &amp; Accounting<br><em>Exam Simulator</em></h1>
+          <p class="lead">Work through one focused question at a time. You get two attempts, a useful hint, and a clear explanation when you need it.</p>
+          <div class="welcome-details" aria-label="Quiz details">
+            <span><strong>30</strong> questions</span>
+            <span><strong>2</strong> attempts each</span>
+            <span><strong>Offline</strong> friendly</span>
+          </div>
+        </div>
+        <div class="start-card">
+          <div class="start-card-top">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>Ready when you are</span>
+          </div>
+          <p id="resumeMessage">Start a full revision session with shuffled questions and answer choices.</p>
+          <button class="primary-button" id="startQuizButton" type="button">Start quiz <span aria-hidden="true">→</span></button>
+          <button class="secondary-button" id="resumeQuizButton" type="button" hidden>Resume quiz</button>
+          <button class="quiet-button" id="newQuizButton" type="button" hidden>Start a new quiz</button>
+          <p class="save-note"><span aria-hidden="true">↳</span> Your progress is saved on this device.</p>
+        </div>
+      </section>
+
+      <section class="view quiz-view" id="quizView" hidden aria-labelledby="questionText">
+        <div class="quiz-header">
+          <div>
+            <div class="quiz-context"><span id="quizModeLabel">Full revision</span><span class="context-separator" aria-hidden="true">/</span><span id="topicLabel">Payroll</span></div>
+            <p class="question-counter" id="questionCounter">Question 1 of 30</p>
+          </div>
+          <div class="score-chip" id="scoreChip" aria-live="polite">0 correct</div>
+        </div>
+        <div class="progress-track" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="30" aria-valuenow="0">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <article class="question-card">
+          <div class="question-card-head">
+            <span class="question-kicker" id="attemptLabel">Attempt 1 of 2</span>
+            <span class="question-number" id="questionNumber">01</span>
+          </div>
+          <h2 id="questionText">Loading question…</h2>
+          <div class="answer-list" id="answerList" role="group" aria-label="Answer choices"></div>
+          <div class="feedback-panel" id="feedbackPanel" aria-live="polite" hidden></div>
+          <div class="question-actions">
+            <button class="primary-button next-button" id="nextButton" type="button" hidden>Next question <span aria-hidden="true">→</span></button>
+          </div>
+        </article>
+      </section>
+
+      <section class="view results-view" id="resultsView" hidden aria-labelledby="resultsTitle">
+        <div class="results-heading">
+          <p class="section-label">Session complete</p>
+          <h1 id="resultsTitle">Your revision<br><em>snapshot</em></h1>
+          <p class="lead" id="performanceMessage">A useful result is one that shows you what to revisit next.</p>
+        </div>
+
+        <div class="results-grid">
+          <div class="score-card">
+            <span class="card-label">Overall score</span>
+            <div class="score-display"><strong id="scoreDisplay">0/30</strong><span id="percentageDisplay">0%</span></div>
+            <div class="result-progress-track"><div class="result-progress-bar" id="resultProgressBar"></div></div>
+          </div>
+          <div class="stats-card">
+            <div class="stat-row"><span><i class="stat-dot first" aria-hidden="true"></i>Correct first try</span><strong id="firstTryDisplay">0</strong></div>
+            <div class="stat-row"><span><i class="stat-dot second" aria-hidden="true"></i>Correct second try</span><strong id="secondTryDisplay">0</strong></div>
+            <div class="stat-row"><span><i class="stat-dot missed" aria-hidden="true"></i>Missed after two</span><strong id="missedDisplay">0</strong></div>
+          </div>
+        </div>
+
+        <div class="review-card" id="reviewCard">
+          <div class="review-heading">
+            <div>
+              <p class="section-label">Keep learning</p>
+              <h2>Questions to review</h2>
+            </div>
+            <span class="review-count" id="reviewCount">0</span>
+          </div>
+          <div class="review-list" id="reviewList"></div>
+        </div>
+
+        <div class="results-actions">
+          <button class="primary-button" id="practiceMistakesButton" type="button">Practice mistakes <span aria-hidden="true">→</span></button>
+          <button class="secondary-button" id="restartQuizButton" type="button">Restart full quiz</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><span>Built for calm, focused revision.</span><span>Progress stays in this browser.</span></footer>
+  </div>
+  <script src="app.js" defer></script>
+</body>
+</html>
