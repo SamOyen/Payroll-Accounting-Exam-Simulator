@@ -174,7 +174,7 @@ function showFeedback(kind, question, selected) {
     const attemptText = getCurrentQuestionState().outcome === "first" ? "Correct on your first attempt." : "Correct — you got there on your second attempt.";
     panel.innerHTML = `<p class="feedback-title">${attemptText}</p><p>${question.explanation}</p><p><span class="feedback-label">Revision tip:</span> ${question.revisionTip}</p>`;
   } else {
-    const wrongReason = question.wrongExplanations[selected] || "That option does not match the information given in the question.";
+    const wrongReason = question.wrongExplanations?.[selected] || "That option does not match the information given in the question.";
     panel.innerHTML = `<p class="feedback-title">The correct answer is: ${question.answer}</p><p>${question.explanation}</p><p><span class="feedback-label">Your answer:</span> ${wrongReason}</p><p><span class="feedback-label">Revision tip:</span> ${question.revisionTip}</p>`;
   }
 }
