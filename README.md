@@ -18,4 +18,4 @@ The site is static, so the student does not need to install anything. Progress i
 
 ## Question bank note
 
-The questions test general introductory payroll and accounting concepts. They intentionally avoid current tax rates, PRSI rates, USC bands, thresholds and legislation. Where a calculation is used, every required figure is supplied in the question.
+The 60-question bank is based on the supplied Level 5 course notes and covers PAYE Modernisation, ROS, RPNs, payroll submissions, monthly statements, employer duties, tax credits, taxable pay, corrections, holiday pay, overtime and introductory accounting. Course-note figures are used only where a calculation supplies the required inputs; current rates and legislation should be checked against official Revenue guidance before relying on them outside revision.
